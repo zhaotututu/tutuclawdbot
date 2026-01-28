@@ -29,9 +29,10 @@
 
 这是为第一次接触项目的用户准备的“保姆级”启动步骤：
 
-#### 1. 获取 API Key 和 Token
-- **OpenRouter Key**: 在 [OpenRouter.ai](https://openrouter.ai/keys) 创建一个密钥。
-- **Telegram Bot Token**: 在 Telegram 搜索并关注 [@BotFather](https://t.me/BotFather)，发送 `/newbot` 按照提示创建一个机器人，最后你会得到一段长长的 Token。
+#### 1. 准备工作
+在开始之前，请先获取以下信息：
+- **OpenRouter API Key**: 在 [OpenRouter.ai](https://openrouter.ai/keys) 创建一个密钥
+- **Telegram Bot Token** (可选): 在 Telegram 搜索 [@BotFather](https://t.me/BotFather)，发送 `/newbot` 创建机器人并获取 Token
 
 #### 2. 环境安装 (Windows 使用 PowerShell)
 ```powershell
@@ -44,27 +45,36 @@ pnpm install
 pnpm build
 ```
 
-#### 3. 注入配置
-在 PowerShell 窗口中运行（将引号里的内容换成你自己的）：
+#### 3. 运行配置向导 🚀
 ```powershell
-# A. 设置 AI 密钥
+# 设置 OpenRouter Key (向导会用到)
 $env:OPENROUTER_API_KEY="您的_OPENROUTER_KEY"
 
-# B. 设置 Gateway 模式为本地
-pnpm clawdbot config set gateway.mode local
-
-# C. 添加你的 Telegram 账户 (系统会保存 Token，以后不用再输)
-pnpm clawdbot channels add --channel telegram --token "您的_TG_BOT_TOKEN"
+# 启动交互式配置向导
+pnpm clawdbot onboard
 ```
 
-#### 4. 启动与验证
+**向导会自动引导您完成：**
+- ✅ AI 模型认证配置 (OpenRouter)
+- ✅ Gateway 网关设置
+- ✅ 聊天频道配置 (Telegram / 钉钉 / WhatsApp 等)
+- ✅ 技能和插件安装
+
+#### 4. 启动并配对
 ```powershell
+# 启动 Gateway
 pnpm clawdbot gateway --verbose
 ```
-启动后，在手机 TG 上找到你的机器人发个消息。它会提示一个 **Pairing code (配对码)**。
-在电脑终端运行以下命令完成审批：
-`pnpm clawdbot pairing approve telegram <你看到的配对码>`
-**现在，机器人已经彻底属于你了！**
+
+在手机上向您的机器人发送消息，它会回复一个 **配对码** (例如: `ABC123`)
+
+**打开新的终端窗口**，运行配对命令：
+```powershell
+cd tutuclawdbot
+pnpm clawdbot pairing approve telegram ABC123
+```
+
+✅ **完成！现在机器人已经彻底属于你了！**
 
 ---
 
