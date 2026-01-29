@@ -46,6 +46,13 @@ pnpm build
 ```
 
 #### 3. 运行配置向导 🚀
+
+> [!WARNING]
+> **Windows 用户注意**：Gateway 服务安装需要管理员权限。请以**管理员身份**运行 PowerShell：
+> 1. 在开始菜单搜索 "PowerShell"
+> 2. 右键点击 → 选择"以管理员身份运行"
+> 3. 然后执行以下命令
+
 ```powershell
 # 设置 OpenRouter Key (向导会用到)
 $env:OPENROUTER_API_KEY="您的_OPENROUTER_KEY"
